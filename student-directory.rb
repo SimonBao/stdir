@@ -13,6 +13,7 @@ def input_student
     print 'Student name:'
     name = gets.chomp
   end
+  print 'Choose Option => '
   students
 end
 
@@ -61,7 +62,33 @@ def print_footer(students)
   end
 end
 
-students = input_student
-print_header
-prints(students)
-print_footer(students)
+def menu_options
+  puts
+  puts 'Option 1) Enroll New Students'
+  puts 'Option 2) Print Academy Students'
+  puts 'Option 3) Menu Options'
+  puts 'Option 4) Quit'
+  print 'Choose Option => '
+end
+
+def menu(students = [])
+  menu_options
+  loop do
+    user_input = gets.chomp
+    case user_input
+      when '1'
+        students += input_student
+      when '2'
+        print_header
+        prints(students)
+        print_footer(students)
+        print 'Choose Option => '
+      when '3'
+        menu_options
+      when '4'
+        exit
+    end
+  end
+end
+
+menu
